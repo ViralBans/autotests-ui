@@ -1,3 +1,5 @@
+from typing import Any, Generator
+
 import pytest
 from playwright.sync_api import Page, Playwright
 
@@ -23,14 +25,12 @@ def initialize_browser_state(playwright: Playwright):
     registration_button.click()
 
     context.storage_state(path='./sessions/browser-state.json')
+    browser.close()
 
 
 @pytest.fixture
-def chromium_page_with_state(initialize_browser_state, playwright: Playwright) -> Page:
+def chromium_page_with_state(initialize_browser_state, playwright: Playwright) -> Generator[Page, Any, None]:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context(storage_state='./sessions/browser-state.json')
-    page = context.new_page()
-
-    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses')
-
-    return page
+    yield context.new_page()
+    browser.close()
