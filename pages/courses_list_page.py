@@ -16,7 +16,7 @@ class CoursesListPage(BasePage):
         self.sidebar = SidebarComponent(page)
         self.courses_toolbar = CoursesListToolbarViewComponent(page)
         self.course_view = CourseViewComponent(page)
-        self.empty_view = EmptyViewComponent(page)  # 'courses-list'
+        self.empty_view = EmptyViewComponent(page)
 
     def check_navbar(self, username: str):
         self.navbar.check_visible(username=username)

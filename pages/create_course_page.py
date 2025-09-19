@@ -16,11 +16,11 @@ class CreateCoursePage(BasePage):
 
         self.navbar = NavbarComponent(page)
         self.course_toolbar = CreateCourseToolbarViewComponent(page)
-        self.image_upload_widget = ImageUploadWidgetComponent(page)  # 'create-course-preview'
+        self.image_upload_widget = ImageUploadWidgetComponent(page)
         self.course_form = CreateCourseFormComponent(page)
         self.exercise_toolbar = CreateCourseExercisesToolbarViewComponent(page)
         self.exercise_form = CreateCourseExerciseFormComponent(page)
-        self.exercises_empty_view = EmptyViewComponent(page)  # 'create-course-exercises'
+        self.exercises_empty_view = EmptyViewComponent(page)
 
     def check_visible_course_toolbar(self, is_create_course_disabled: bool):
         self.course_toolbar.check_visible(is_create_course_disabled)
