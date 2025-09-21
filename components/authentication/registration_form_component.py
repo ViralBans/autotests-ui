@@ -14,15 +14,20 @@ class RegistrationFormComponent(BaseComponent):
 
     def fill(self, email: str, username: str, password: str):
         self.email_input.fill(email)
+        self.email_input.check_have_value(email)
+
         self.username_input.fill(username)
+        self.username_input.check_have_value(username)
+
         self.password_input.fill(password)
+        self.password_input.check_have_value(password)
 
     def check_visible(self, email: str, username: str, password: str):
         self.email_input.check_visible()
-        self.email_input.check_have_text(email)
+        self.email_input.check_have_value(email)
 
         self.username_input.check_visible()
-        self.username_input.check_have_text(username)
+        self.username_input.check_have_value(username)
 
         self.password_input.check_visible()
-        self.password_input.check_have_text(password)
+        self.password_input.check_have_value(password)

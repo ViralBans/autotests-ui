@@ -16,7 +16,7 @@ class CoursesListPage(BasePage):
         self.sidebar = SidebarComponent(page)
         self.courses_toolbar = CoursesListToolbarViewComponent(page)
         self.course_view = CourseViewComponent(page)
-        self.empty_view = EmptyViewComponent(page)
+        self.empty_view = EmptyViewComponent(page, 'courses-list')
 
     def check_navbar(self, username: str):
         self.navbar.check_visible(username=username)
@@ -32,8 +32,7 @@ class CoursesListPage(BasePage):
 
     def check_visible_empty_view(self):
         self.empty_view.check_visible(title='There is no results',
-                                      description='Results from the load test pipeline will be displayed here',
-                                      identifier='courses-list')
+                                      description='Results from the load test pipeline will be displayed here')
 
     def check_visible_course_card(self, index: int, title: str, max_score: str, min_score: str, estimated_time: str):
         self.course_view.check_visible(index=index, title=title, max_score=max_score, min_score=min_score,
