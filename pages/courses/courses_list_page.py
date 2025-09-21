@@ -37,3 +37,6 @@ class CoursesListPage(BasePage):
     def check_visible_course_card(self, index: int, title: str, max_score: str, min_score: str, estimated_time: str):
         self.course_view.check_visible(index=index, title=title, max_score=max_score, min_score=min_score,
                                        estimated_time=estimated_time)
+
+    def click_edit(self, index: int):
+        self.course_view.menu.click_edit(index=index)
