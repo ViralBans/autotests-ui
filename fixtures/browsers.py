@@ -24,7 +24,7 @@ def initialize_browser_state(playwright: Playwright):
     registration_page.registration_form.fill(email='user.name@gmail.com', username='username', password='password')
     registration_page.click_registration_button()
 
-    context.storage_state(path="browser-state.json")
+    context.storage_state(path="./sessions/browser-state.json")
     browser.close()
 
 
