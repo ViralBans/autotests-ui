@@ -57,7 +57,7 @@ class CreateCoursePage(BasePage):
         self.exercise_toolbar.click_create_exercise_button()
 
     def check_visible_exercise_form(self, index: int, title: str, description: str):
-        self.create_exercise_form.check_visible(index=index, title=title, description=description)
+        self.exercise_form.check_visible(index=index, title=title, description=description)
 
     def fill_exercise_form(self, index: int, title: str, description: str):
-        self.create_exercise_form.check_visible(index=index, title=title, description=description)
+        self.exercise_form.check_visible(index=index, title=title, description=description)
