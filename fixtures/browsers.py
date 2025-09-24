@@ -1,15 +1,24 @@
 from typing import Any, Generator
 
 import pytest
+from _pytest.fixtures import SubRequest
 from playwright.sync_api import Page, Playwright
 from pages.authentication.registration_page import RegistrationPage
+from tools.playwright.pages import initialize_playwright_page
 
 
 @pytest.fixture
-def chromium_page(playwright: Playwright) -> Generator[Page, Any, None]:
-    browser = playwright.chromium.launch(headless=False)
-    yield browser.new_page()
-    browser.close()
+def chromium_page(request: SubRequest, playwright: Playwright) -> Generator[Page, Any, None]:
+    yield from initialize_playwright_page(playwright, test_name=request.node.name)
+
+
+@pytest.fixture
+def chromium_page_with_state(initialize_browser_state, request: SubRequest, playwright: Playwright) -> Generator[Page, Any, None]:
+    yield from initialize_playwright_page(
+        playwright,
+        test_name=request.node.name,
+        storage_state="./sessions/browser-state.json"
+    )
 
 
 @pytest.fixture(scope='session')
@@ -25,12 +34,4 @@ def initialize_browser_state(playwright: Playwright):
     registration_page.click_registration_button()
 
     context.storage_state(path="./sessions/browser-state.json")
-    browser.close()
-
-
-@pytest.fixture
-def chromium_page_with_state(initialize_browser_state, playwright: Playwright) -> Generator[Page, Any, None]:
-    browser = playwright.chromium.launch(headless=False)
-    context = browser.new_context(storage_state='./sessions/browser-state.json')
-    yield context.new_page()
     browser.close()
