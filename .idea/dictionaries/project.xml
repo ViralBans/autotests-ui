@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>networkidle</w>
+      <w>testid</w>
     </words>
   </dictionary>
 </component>
