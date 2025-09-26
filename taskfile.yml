@@ -5,4 +5,4 @@ tasks:
     desc: Очистка allure-results и запуск regression-тестов
     cmds:
       - python -c "import shutil; shutil.rmtree('./allure-results', ignore_errors=True)"
-      - python -m pytest -k "regression" --alluredir=./allure-results
+      - python -m pytest -m "regression" --alluredir=./allure-results --numprocesses=5
